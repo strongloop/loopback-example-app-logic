@@ -1,4 +1,4 @@
-loopback-example-app-logic
-==========================
-
-LoopBack application logic example
+#Overview
+#Prerequisites
+#Try it out
+#Procedure
