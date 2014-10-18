@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "compression": "^1.0.3",
+    "debug": "^2.1.0",
     "errorhandler": "^1.1.1",
     "loopback": "^2.0.0",
     "loopback-boot": "^2.0.0",
