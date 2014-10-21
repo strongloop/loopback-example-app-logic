@@ -191,7 +191,8 @@ Car.beforeSave = function(next, model) {
 
 >Note `next` is the first argument, which is unusual when compared to
 conventional javascript contexts as the convention is to list `next` as the
-last argument.
+last argument. This is a side effect of inheriting from the
+[`jugglingdb`](https://github.com/1602/jugglingdb) library.
 
 This hook runs whenever a `Car` model instance is about to be saved. In our
 case, we create an instance in the boot script from [step
