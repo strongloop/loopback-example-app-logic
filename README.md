@@ -146,7 +146,7 @@ Let's make an instance of a `Car`. Create a script named
 `create-car-instance.js` in `server/boot` with the following contents:
 
 ```js
-module.exports = function(app) {
+module.exports = function(app, cb) {
   var Car = app.models.Car;
   Car.create({
     make: 'honda',
@@ -154,6 +154,7 @@ module.exports = function(app) {
   }, function(err, car) {
     if (err) return console.log(err);
     console.log('Saving a car instance from a boot script', car);
+    cb();
   });
 };
 ```
@@ -169,6 +170,12 @@ Saving a car instance from a boot script { make: 'honda',
   model: 'civic',
   id: 1 }
 ```
+
+>LoopBack supports both synchronous and asynchronous boot scripts.  For a
+synchronous boot script, you should use `module.exports = function(app)...` vs
+asynchronous boot scripts which look like `module.exports = function(app,
+callback)...`. The main difference is you may provide a callback depending if
+necessary depending on your needs.
 
 ###6. Define a model hook
 In `common/models/car.js`, add:
