@@ -113,7 +113,8 @@ output, you should see "Putting in the car key, starting the engine...".
 
 >The second parameter `unused` must be provided for legacy reasons. You can
 simply ignore it as long as you declare it to make sure `next` is the third
-parameter.
+parameter. This is a side effect of inheriting from the
+[`jugglingdb`](https://github.com/1602/jugglingdb) library.
 
 >`context` contains the [Express](http://expressjs.com/) request and response
 objects. This means you have access to context specific information if
