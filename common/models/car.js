@@ -26,7 +26,7 @@ module.exports = function(Car) {
 
   //model hook - before save
   Car.beforeSave = function(next, model) {
-    console.log('About to save a car instance...');
+    console.log('About to save a car instance: ', model);
     next();
   };
 };

@@ -10,8 +10,8 @@ app.use(loopback.favicon());
 app.use(loopback.compress());
 
 // -- Add your pre-processing middleware here --
-var dateReporterMW = require('./middleware/date-reporter');
-app.use(dateReporterMW);
+var reqTracker = require('./middleware/tracker');
+app.use(reqTracker);
 
 // boot scripts mount components like REST API
 boot(app, __dirname);
@@ -22,8 +22,9 @@ boot(app, __dirname);
 // Example:
 //   var path = require('path');
 //   app.use(loopback.static(path.resolve(__dirname, '../client')));
+
 app.use('/datetime', function(req, res, next) {
-  console.log('post-processing middleware triggered');
+  console.log('Date time middleware triggered');
   res.json({datetime: new Date()});
 });
 

@@ -4,8 +4,12 @@ module.exports = function(app, cb) {
     make: 'honda',
     model: 'civic'
   }, function(err, car) {
-    if (err) return console.log(err);
-    console.log('Saving a car instance from a boot script', car);
-    cb();
+    if (err) {
+      console.error(err);
+      cb(err);
+    } else {
+      console.log('A car instance is created using boot script: ', car);
+      cb();
+    }
   });
 };
