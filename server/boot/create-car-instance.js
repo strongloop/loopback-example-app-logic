@@ -8,7 +8,7 @@ module.exports = function(app, cb) {
       console.error(err);
       cb(err);
     } else {
-      console.log('A car instance is created using boot script: ', car);
+      console.log('A car instance has been created from a boot script:', car);
       cb();
     }
   });

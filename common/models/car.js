@@ -14,7 +14,7 @@ module.exports = function(Car) {
 
   //remote method - before hook
   Car.beforeRemote('revEngine', function(context, unused, next) {
-    console.log('Putting in the car key, starting the engine...');
+    console.log('Putting in the car key, starting the engine.');
     next();
   });
 
@@ -26,7 +26,7 @@ module.exports = function(Car) {
 
   //model hook - before save
   Car.beforeSave = function(next, model) {
-    console.log('About to save a car instance: ', model);
+    console.log('About to save a car instance:', model);
     next();
   };
 };

@@ -13,7 +13,7 @@ tutorial.
 ###Dependencies
 * Node `node -v #v0.10.31`
 * NPM `npm -v #1.4.23`
-* StrongLoop Controller `slc -v #v2.9.1`
+* StrongLoop Controller `slc -v #v2.9.2`
 
 ###Knowledge
 * [LoopBack](http://docs.strongloop.com/display/LB/LoopBack+2.0)
@@ -44,8 +44,8 @@ localhost:3000/datetime`. See [step 2](#2-define-a-remote-method) and [step
 In this example, we build an application that consists of one model named `car`.
 We will be adding remote methods, remote hooks, and models hooks to this model.
 In addition, we will also create a `car` model instance in a boot script.
-Finally, we end with adding pre-processing and post-processing middleware that
-simply reports the current date and time.
+Finally, we end with adding pre-processing middleware that displays and
+post-processing middleware that simply reports the current date and time.
 
 ###1. Bootstrap the app
 Set up the basic infrastructure for the app. Do the following:
@@ -70,7 +70,7 @@ bootstrapping process.
 In `common/models/car.js`, define a remote method accessible at `POST
 /rev-engine` that is mapped to static function named `revEngine`:
 
-```js
+```
 ...
 //remote method
 Car.revEngine = function(sound, cb) {
@@ -88,19 +88,23 @@ Car.remoteMethod(
 ```
 
 This remote method simply takes a sound and repeats it three times. Test it by
-starting the server with `slc run` and making a HTTP request with  `curl -XPOST
+starting the server with `slc run` and make a HTTP request with ` curl -XPOST
 localhost:3000/api/cars/rev-engine -H 'content-type:application/json' -d
-'{"sound":"vroom"}'`. You should see `{"engineSound":"vroom vroom vroom"}` as
-the response.
+'{"sound":"vroom"}'`. In the response, you should see:
+
+```
+...
+{"engineSound":"vroom vroom vroom"}
+```
 
 ###3. Define a remote method before hook
 In `common/models/car.js`, add:
 
-```js
+```
 ...
 //remote method before hook
 Car.beforeRemote('revEngine', function(context, unused, next) {
-  console.log('Putting in the car key, starting the engine...');
+  console.log('Putting in the car key, starting the engine.');
   next();
 });
 ...
@@ -109,7 +113,12 @@ Car.beforeRemote('revEngine', function(context, unused, next) {
 This method is triggered right before `revEngine` is called and simply prints a
 message to the console. Test it by restarting the server and performing the same
 HTTP request from [step 2](#2-define-a-remote-method). In the server
-output, you should see "Putting in the car key, starting the engine...".
+output, you should see:
+
+```
+...
+Putting in the car key, starting the engine.
+```
 
 >The second parameter `unused` must be provided for legacy reasons. You can
 simply ignore it as long as you declare it to make sure `next` is the third
@@ -123,7 +132,7 @@ necessary.
 ###4. Define a remote method after hook
 In `common/models/car.js`, add:
 
-```js
+```
 ...
 //remote method after hook
 Car.afterRemote('revEngine', function(context, remoteMethodOutput, next) {
@@ -133,29 +142,35 @@ Car.afterRemote('revEngine', function(context, remoteMethodOutput, next) {
 ...
 ```
 
-This method triggers after `revEngine` finishes execution and also prints a
-simple message. Test it by restarting the server and  performing the same HTTP
-request from the tip in [step 2](#2-define-a-remote-method). In the server
-output, you should see "Turning off the engine, removing the key".
-
 >The second argument `remoteMethodOutput` contains the value from the callback
 in the remote method `revEngine`. This allows you manipulate the resulting
 value before sending it to its final destination.
 
+This method triggers after `revEngine` finishes execution and prints a simple
+message. Test it by restarting the server and  performing the same HTTP request
+in [step 2](#2-define-a-remote-method). In the server output, you should see:
+
+```
+...
+Turning off the engine, removing the key.
+```
+
 ###5. Create a boot script
-Let's make an instance of a `Car`. Create a script named
+Let's make an instance of a `Car`. Create a boot script named
 `create-car-instance.js` in `server/boot` with the following contents:
 
-```js
-module.exports = function(app, cb) {
+```
+module.exports = function(app) {
   var Car = app.models.Car;
   Car.create({
     make: 'honda',
     model: 'civic'
   }, function(err, car) {
-    if (err) return console.log(err);
-    console.log('Saving a car instance from a boot script', car);
-    cb();
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('A car instance has been created from a boot script:', car);
+    }
   });
 };
 ```
@@ -166,8 +181,8 @@ application context to retrieve models, configs, etc.
 Boot scripts are executed on application startup. Test this script by restarting
 the server and you should see the following server output:
 
-```shell
-Saving a car instance from a boot script { make: 'honda',
+```
+A car instance has been created from a boot script: { make: 'honda',
   model: 'civic',
   id: 1 }
 ```
@@ -176,15 +191,43 @@ Saving a car instance from a boot script { make: 'honda',
 synchronous boot script, you should use `module.exports = function(app)...` vs
 asynchronous boot scripts which look like `module.exports = function(app,
 callback)...`. The main difference is you may provide a callback depending if
-necessary depending on your needs.
+necessary depending on your use case.
 
-###6. Define a model hook
+###6. Create a synchronous boot script
+Create a second boot script named `print-models.js` in `server/boot` with the
+following contents:
+
+```
+module.exports = function(app) {
+  var modelNames = Object.keys(app.models);
+  var models = [];
+  modelNames.forEach(function(m) {
+    var modelName = app.models[m].modelName;
+    if (models.indexOf(modelName) === -1) {
+      models.push(modelName);
+    }
+  });
+  console.log('Models: ', models);
+};
+```
+
+This script simply prints the models names thats are currently registered in the
+LoopBack application. Test it by restarting the server and you should see:
+
+```
+...
+Models:  [ 'User', 'AccessToken', 'ACL', 'RoleMapping', 'Role', 'car' ]
+...
+```
+
+###7. Define a model hook
 In `common/models/car.js`, add:
 
-```js
+```
 ...
+//model hook
 Car.beforeSave = function(next, model) {
-  console.log('About to save a car instance...');
+  console.log('About to save a car instance:', model);
   next();
 };
 ...
@@ -202,12 +245,14 @@ by restarting the server and it should output:
 
 ```shell
 ...
-About to save a car instance...
-Saving a car instance from a boot script { make: 'honda',
+About to save a car instance: { make: 'honda', model: 'civic' }
+A car instance has been created from a boot script: { make: 'honda',
+  model: 'civic',
+  id: 1 }
 ...
 ```
 
-As you can see, the model hook is triggered before saving a `Car` model
+As you can see, the model hook is triggered **before** saving a `Car` model
 instance.
 
 >There are many other model, such as `afterInitialize`, `beforeValidate`,
@@ -215,47 +260,52 @@ instance.
 documentation](http://docs.strongloop.com/display/LB/Model+hooks) for more
 information.
 
-###7. Define pre-processing middleware
+###8. Define pre-processing middleware
 In `server`, create a directory named `middleware`. Next, create a middleware
-script named `date-reporter` in `server/middleware` with the following contents:
+script named `tracker.js` in `server/middleware` with the following contents:
 
-```js
+```
 module.exports = function(req, res, next) {
-  console.log('pre-processing middleware triggered');
-  console.log(new Date());
+  console.log('Request tracking middleware triggered on %s.', req.url);
+  var start = process.hrtime();
+  res.once('finish', function() {
+    var diff = process.hrtime(start);
+    var ms = diff[0] * 1e3 + diff[1] * 1e-6;
+    console.log('The request processing time is %d ms.', ms);
+  });
   next();
 };
 ```
 
 Then modify `server/server.js` to look like:
 
-```js
+```
 ...
 // -- Add your pre-processing middleware here --
-var dateReporterMW = require('./middleware/date-reporter');
-app.use(dateReporterMW);
+var reqTracker = require('./middleware/tracker');
+app.use(reqTracker);
 ...
 ```
 
-This middleware simply print the current date and is triggered on all routes for
-any request. Test this by performing the HTTP request from
-[step 2](#2-define-a-remote-method) and you should see:
+This middleware simply prints the request processing time and is triggered on
+all routes for any type of request. Test this by performing the same HTTP
+request from [step 2](#2-define-a-remote-method) and you should see:
 
-```shell
+```
 ...
-pre-processing middleware triggered
-Tue Oct 21 2014 01:02:33 GMT-0700 (PDT)
-...
+The request processing time is 19.147569999999998 ms.
 ```
 
->See [Express middeware
-documentation](http://expressjs.com/api.html#middleware.api) for more
-information.
+>19.147569999999998 will be different depending on how long it takes to process
+the request on your machine.
 
-###8. Define post-processing middleware
+>For more information on middleware, see the [Express middleware
+documentation](http://expressjs.com/api.html#middleware.api).
+
+###9. Define post-processing middleware
 Modify `server/server.js` to look like:
 
-```js
+```
 ...
 // -- Mount static files here--
 // All static middleware should be registered at the end, as all requests
@@ -264,7 +314,7 @@ Modify `server/server.js` to look like:
 //   var path = require('path');
 //   app.use(loopback.static(path.resolve(__dirname, '../client')));
 app.use('/datetime', function(req, res, next) {
-  console.log('post-processing middleware triggered');
+  console.log('Date time middleware triggered.');
   res.json({datetime: new Date()});
 });
 ...
@@ -274,9 +324,9 @@ This middleware is triggered when any request type is sent to the  `/datetime`
 route. Test this by restarting the server and running `curl
 localhost:3000/datetime`. In the server output, you should see:
 
-```shell
+```
 ...
-post-processing middleware triggered
+Date time middleware triggered.
 ...
 ```
 
@@ -286,4 +336,3 @@ In the curl response, you should see `{"datetime":"2014-10-21T08:13:51.289Z"}`.
 That's it! You've now tried a variety of ways and places to implement your own
 custom application logic. For more information, see the [LoopBack application
 logic documentation](http://docs.strongloop.com/display/LB/Extending+a+LoopBack+application).
-
