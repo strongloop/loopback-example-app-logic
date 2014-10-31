@@ -220,6 +220,16 @@ Models:  [ 'User', 'AccessToken', 'ACL', 'RoleMapping', 'Role', 'car' ]
 ...
 ```
 
+###6. Create an asynchronous boot script
+Coming soon. Similar to a synchronous boot script, but just provide the
+`callback` argument in the function signature.
+
+```
+module.exports = function(app, cb) {
+  ...
+};
+```
+
 ###7. Define a model hook
 In `common/models/car.js`, add:
 
