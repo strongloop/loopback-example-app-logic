@@ -1,0 +1,17 @@
+{
+  "name": "car",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "make": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

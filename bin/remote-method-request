@@ -1,0 +1,5 @@
+#!/bin/sh
+
+curl -XPOST localhost:3000/api/cars/rev-engine \
+  -H 'content-type:application/json' \
+  -d '{"sound":"vroom"}'
