@@ -13,9 +13,6 @@
   "parse": {
   },
   "routes": {
-    "loopback#status": {
-      "paths": "/"
-    },
     "./middleware/datetime": {
       "paths": "/datetime"
     }

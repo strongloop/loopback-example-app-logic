@@ -1,6 +1,6 @@
 {
   "name": "loopback-example-app-logic",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint .",
@@ -19,5 +19,10 @@
   },
   "devDependencies": {
     "jshint": "^2.5.6"
-  }
+  },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "description": "loopback-example-app-logic"
 }
