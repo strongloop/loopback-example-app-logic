@@ -8,7 +8,7 @@ slc run
 # then in a different tab, run ./bin/remote-method-request or ./bin/datetime-request
 ```
 
-In this example, we demonstrate remote methods, remote hooks, model hooks, boot scripts, and middleware as solutions for integrating user-defined logic into a LoopBack application.
+In this example, we demonstrate remote methods, remote hooks, model operation hooks, boot scripts, and middleware as solutions for integrating user-defined logic into a LoopBack application.
 
 - [Prerequisites](#prerequisites)
 - [Procedure](#procedure)
