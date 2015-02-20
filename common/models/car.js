@@ -24,7 +24,7 @@ module.exports = function(Car) {
     next();
   });
 
-  // model hook
+  // model operation hook
   Car.observe('before save', function(ctx, next) {
     if (ctx.instance) {
       console.log('About to save a car instance:', ctx.instance);
