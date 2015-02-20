@@ -162,27 +162,30 @@ Models:  [ 'User', 'AccessToken', 'ACL', 'RoleMapping', 'Role', 'car' ]
 ...
 ```
 
-###7. Define a model hook
+###7. Define a model operation hook
 
-Define [a model hook in `car.js`](/common/models/car.js#L27-L31).
+Define [a model operation hook in `car.js`](/common/models/car.js#L27-L35).
+
+Copy the `create-car.js` script to the `server/boot` directory.
+
+```
+cp examples/async-boot-script/create-car.js server/boot/
+```
 
 Restart the server.
-
-```
-./bin/remote-method-request
-```
 
 You should see:
 
 ```
 ...
 About to save a car instance: { make: 'honda', model: 'civic' }
+A `car` instance has been created from a boot script: { make: 'honda', model: 'civic', id: 1 }
 ...
 ```
 
-This model hook is triggered **before** saving any `car` model instance.
+This model operation hook is triggered **before** saving any `car` model instance.
 
-> Many other hooks are available, such as `afterInitialize`, `beforeValidate`, `beforeDestroy`, etc. See the [model hooks documentation](http://docs.strongloop.com/display/LB/Model+hooks) and [`loopback-faq-model-hooks`](https://github.com/strongloop/loopback-faq-model-hooks) for more information.
+> Many other operation hooks are available, such as `access`, `before save`, `after save`, `before delete`, and `after delete`. See the [model operation hooks documentation](http://docs.strongloop.com/display/public/LB/Operation+hooks) for more information.
 
 ###8. Add pre-processing middleware
 

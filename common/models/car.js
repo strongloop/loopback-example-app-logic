@@ -25,8 +25,12 @@ module.exports = function(Car) {
   });
 
   // model hook
-  Car.beforeSave = function(next, model) {
-    console.log('About to save a car instance:', model);
+  Car.observe('before save', function(ctx, next) {
+    if (ctx.instance) {
+      console.log('About to save a car instance:', ctx.instance);
+    } else {
+      console.log('About to update cars that match the query %j:', ctx.where);
+    }
     next();
-  };
+  });
 };
