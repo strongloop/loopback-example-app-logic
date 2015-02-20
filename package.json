@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "main": "server/server.js",
   "scripts": {
-    "pretest": "jshint ."
+    "pretest": "jshint .",
+    "start": "slc run"
   },
   "dependencies": {
     "compression": "^1.0.3",
