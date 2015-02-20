@@ -18,7 +18,7 @@ In this example, we demonstrate remote methods, remote hooks, model hooks, boot 
   - [4. Define a remote method before hook](#4-define-a-remote-method-before-hook)
   - [5. Define a remote method after hook](#5-define-a-remote-method-after-hook)
   - [6. Create a boot script](#6-create-a-boot-script)
-  - [7. Define a model hook](#7-define-a-model-operation-hook)
+  - [7. Define a model operation hook](#7-define-a-model-operation-hook)
   - [8. Add pre-processing middleware](#8-add-pre-processing-middleware)
   - [9. Add post-processing middleware](#9-add-post-processing-middleware)
   - [10. Conclusion](#10-conclusion)
