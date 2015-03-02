@@ -84,7 +84,7 @@ Create a [`bin` directory](/bin) to store scripts.
 mkdir bin
 ```
 
-In this directory, create an **executable** [shell script named `remote-method-request`](/bin/remote-method-request).
+In this directory, create an **executable** shell script named `remote-method-request`.
 
 > Remember to set execute permissions on the script to run it (ie. `chmod a+x ./bin/remote-method-request`
 
