@@ -78,21 +78,7 @@ Define a [remote method in `car.js`](/common/models/car.js#L2-L13).
 
 > The remote method takes a "sound" and repeats it 3 times.
 
-Create a [`bin` directory](/bin) to store scripts.
-
-```
-mkdir bin
-```
-
-In this directory, create an **executable** shell script named `remote-method-request`.
-
-> Remember to set execute permissions on the script to run it (ie. `chmod a+x ./bin/remote-method-request`
-
-Start the server (`slc run`).
-
-```
-./bin/remote-method-request
-```
+Test it by starting the server and running `curl localhost:3000/api/cars/rev-engine -d '{"sound":"vroom"}'`.
 
 You should see:
 

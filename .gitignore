@@ -17,4 +17,3 @@
 coverage
 node_modules
 npm-debug.log
-server/boot/create-car.js
