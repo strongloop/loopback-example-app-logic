@@ -78,7 +78,9 @@ Define a [remote method in `car.js`](/common/models/car.js#L2-L13).
 
 > The remote method takes a "sound" and repeats it 3 times.
 
-Test it by starting the server and running `curl -XPOST localhost:3000/api/cars/rev-engine -H "content-type:application/json" -d '{"sound":"vroom"}'`.
+Test it by starting the server (via `slc run`) and running `curl -XPOST localhost:3000/api/cars/rev-engine -H 'content-type:application/json' -d '{"sound":"vroom"}'`.
+
+>If you are using Windows, single quotes are treated as backticks in `cmd`. This means you will have to modify the `curl` command to use and escape double quotes instead: `curl -XPOST localhost:3000/api/cars/rev-engine -H "content-type:application/json" -d '{\"sound\":\"vroom\"}'`.
 
 You should see:
 
