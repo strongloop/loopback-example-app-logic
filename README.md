@@ -38,7 +38,7 @@ In this example, we demonstrate remote methods, remote hooks, model operation ho
 
 ##Procedure
 
-###1. Create the application
+###Create the application
 
 ####Application information
 
@@ -51,7 +51,7 @@ slc loopback loopback-example-app-logic
 cd loopback-example-app-logic
 ```
 
-###2. Add a model
+###Add a model
 
 ####Model information
 - Name: `car`
