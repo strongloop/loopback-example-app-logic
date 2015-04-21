@@ -72,13 +72,13 @@ slc loopback:model car
 ... # follow the prompts
 ```
 
-###3. Define a remote method
+###Define a remote method
 
 Define a [remote method in `car.js`](/common/models/car.js#L2-L13).
 
-> The remote method takes a "sound" and repeats it 3 times.
+> The remote method takes a "sound" and repeats it three times.
 
-Test it by starting the server (via `slc run`) and running `curl -XPOST localhost:3000/api/cars/rev-engine -H 'content-type:application/json' -d '{"sound":"vroom"}'`.
+Test it by starting the server (using `node .`) and running `curl -XPOST localhost:3000/api/cars/rev-engine -H 'content-type:application/json' -d '{"sound":"vroom"}'`.
 
 >If you are using Windows, single quotes are treated as backticks in `cmd`. This means you will have to modify the `curl` command to use and escape double quotes instead: `curl -XPOST localhost:3000/api/cars/rev-engine -H "content-type:application/json" -d "{\"sound\":\"vroom\"}"`.
 
@@ -89,7 +89,7 @@ You should see:
 {"engineSound":"vroom vroom vroom"}
 ```
 
-###4. Define a remote method before hook
+###Define a remote method before hook
 
 Define a [remote method before hook in `car.js`](/common/models/car.js#L15-L19).
 
@@ -112,7 +112,7 @@ You should see:
 Putting in the car key, starting the engine.
 ```
 
-###5. Define a remote method after hook
+###Define a remote method after hook
 
 Define a [remote method after hook in `car.js`](/common/models/car.js#L21-L25).
 
@@ -131,11 +131,11 @@ You should see:
 Turning off the engine, removing the key.
 ```
 
-###6. Create a boot script
+###Create a boot script
 
 Create [`print-models.js`](/server/boot/print-models.js) in the [`boot` directory](/server/boot).
 
-> The [`app` argument](/server/boot/print-models.js#L1) is provided by LoopBack. You can use it to access the application context, which is required when you want to retrieve models, configs, etc.
+> The [`app` argument](/server/boot/print-models.js#L1) is provided by LoopBack. You can use it to access the application context, which is required when you want to retrieve models, configs, and so on.
 
 > ####Asynchronous boot scripts
 > To use asynchronous boot scripts, you have to modify [`boot`](/examples/async-boot-scripts/server.js#L1) to take  callback. You will also need to provide an additional [`callback` argument](/examples/async-boot-script/create-car.js#L1) in your boot scripts.
@@ -150,7 +150,7 @@ Models:  [ 'User', 'AccessToken', 'ACL', 'RoleMapping', 'Role', 'car' ]
 ...
 ```
 
-###7. Define a model operation hook
+###Define a model operation hook
 
 Define [a model operation hook in `car.js`](/common/models/car.js#L27-L35).
 
@@ -175,7 +175,7 @@ This model operation hook is triggered **before** saving any `car` model instanc
 
 > Many other operation hooks are available, such as `access`, `before save`, `after save`, `before delete`, and `after delete`. See the [model operation hooks documentation](http://docs.strongloop.com/display/public/LB/Operation+hooks) for more information.
 
-###8. Add pre-processing middleware
+###Add pre-processing middleware
 
 Create the [`middleware` directory](/server/middleware) to store middleware
 files.
@@ -206,9 +206,9 @@ The request processing time is 28.472051 ms.
 
 > Your time will be different.
 
-###9. Add post-processing middleware
+###Add post-processing middleware
 
-Create the [`datetime` middleware](/server/middleware/datetime.js) which responds with the current date and time when a request is made to [`localhost:3000/datetime`](http://localhost:3000/datetime).
+Create the [`datetime` middleware](/server/middleware/datetime.js), which responds with the current date and time when a request is made to [`localhost:3000/datetime`](http://localhost:3000/datetime).
 
 Register the `tracker` middleware in [`middleware.json`](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/middleware.json#L19-L21).
 
@@ -229,9 +229,6 @@ You should see:
 
 > Your date and time will be different.
 
-###10. Conclusion
-
-You've now seen various ways to implement your own logic within a LoopBack application. For more information, see the [LoopBack app logic documentation](http://docs.strongloop.com/display/LB/Adding+application+logic)
 
 ---
 
