@@ -1,10 +1,10 @@
 #loopback-example-app-logic
 
 ```
-git clone https://github.com/strongloop/loopback-example-app-logic.git
-cd loopback-example-app-logic
-npm install
-slc run
+$ git clone https://github.com/strongloop/loopback-example-app-logic.git
+$ cd loopback-example-app-logic
+$ npm install
+$ node .
 # then in a different tab, run ./bin/remote-method-request or ./bin/datetime-request
 ```
 
@@ -68,7 +68,7 @@ cd loopback-example-app-logic
       - Not required
 
 ```
-slc loopback:model car
+$ slc loopback:model car
 ... # follow the prompts
 ```
 
@@ -102,7 +102,7 @@ This method is triggered right before `revEngine` is called and prints a message
 Restart the server.
 
 ```
-./bin/remote-method-request
+$ ./bin/remote-method-request
 ```
 
 You should see:
@@ -121,7 +121,7 @@ This method is triggered after `revEngine` finishes execution and prints a messa
 Restart the server.
 
 ```
-./bin/remote-method-request
+$ ./bin/remote-method-request
 ```
 
 You should see:
@@ -157,7 +157,7 @@ Define [a model operation hook in `car.js`](/common/models/car.js#L27-L35).
 Copy the `create-car.js` script to the `server/boot` directory.
 
 ```
-cp examples/async-boot-script/create-car.js server/boot/
+$ cp examples/async-boot-script/create-car.js server/boot/
 ```
 
 Restart the server.
@@ -181,7 +181,7 @@ Create the [`middleware` directory](/server/middleware) to store middleware
 files.
 
 ```
-mkdir server/middleware
+$ mkdir server/middleware
 ```
 
 Create the [`tracker` middleware](/server/middleware/tracker.js) to respond with
@@ -194,7 +194,7 @@ Register the `tracker` middleware in [`middleware.json`](https://github.com/stro
 Restart the server.
 
 ```
-./bin/remote-method-request
+$ ./bin/remote-method-request
 ```
 
 You should see:
@@ -217,7 +217,7 @@ Register the `tracker` middleware in [`middleware.json`](https://github.com/stro
 Restart the server.
 
 ```
-./bin/datetime-request
+$ ./bin/datetime-request
 ```
 
 You should see:
