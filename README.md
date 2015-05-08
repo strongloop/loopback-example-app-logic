@@ -46,9 +46,9 @@ In this example, we demonstrate remote methods, remote hooks, model operation ho
 - Directory to contain the project: `loopback-example-app-logic`
 
 ```
-slc loopback loopback-example-app-logic
+$ slc loopback loopback-example-app-logic
 ... # follow the prompts
-cd loopback-example-app-logic
+$ cd loopback-example-app-logic
 ```
 
 ###Add a model
