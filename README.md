@@ -10,18 +10,6 @@ $ node .
 
 In this example, we demonstrate remote methods, remote hooks, model operation hooks, boot scripts, and middleware as solutions for integrating user-defined logic into a LoopBack application.
 
-- [Prerequisites](#prerequisites)
-- [Procedure](#procedure)
-  - [1. Create the application](#1-create-the-application)
-  - [2. Add a model](#2-add-a-model)
-  - [3. Define a remote method](#3-define-a-remote-method)
-  - [4. Define a remote method before hook](#4-define-a-remote-method-before-hook)
-  - [5. Define a remote method after hook](#5-define-a-remote-method-after-hook)
-  - [6. Create a boot script](#6-create-a-boot-script)
-  - [7. Define a model operation hook](#7-define-a-model-operation-hook)
-  - [8. Add pre-processing middleware](#8-add-pre-processing-middleware)
-  - [9. Add post-processing middleware](#9-add-post-processing-middleware)
-  - [10. Conclusion](#10-conclusion)
 
 ##Prerequisites
 
