@@ -18,15 +18,12 @@ describe('REST API request', function() {
     done();
   });
   
-
   after(function(done) {
     app.removeAllListeners('started');
     app.removeAllListeners('loaded');
     done();
   });
   
-
-
   it('should take a sound and repeat it 3 times', function(done){
     json('post', '/api/cars/rev-engine')
       .send({
@@ -49,6 +46,3 @@ describe('Unexpected Usage', function(){
       .expect(404, done);
   });
 });
-
- 
-
