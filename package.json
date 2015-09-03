@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
-    "test": "mocha -R spec server/test",
+    "test": "mocha -R spec test",
     "pretest": "jshint ."
   },
   "dependencies": {
