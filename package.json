@@ -26,5 +26,6 @@
     "type": "",
     "url": ""
   },
-  "description": "loopback-example-app-logic"
+  "description": "loopback-example-app-logic",
+  "license": "MIT"
 }
