@@ -1,10 +1,12 @@
 {
   "name": "loopback-example-app-logic",
   "version": "1.0.0",
+  "description": "loopback-example-app-logic",
   "main": "server/server.js",
   "scripts": {
-    "test": "mocha -R spec test",
-    "pretest": "jshint ."
+    "pretest": "jshint .",
+    "start": "node .",
+    "test": "mocha -R spec test"
   },
   "dependencies": {
     "compression": "^1.0.3",
@@ -19,13 +21,12 @@
     "loopback-explorer": "^1.1.0"
   },
   "devDependencies": {
-    "mocha": "^1.20.1",
-    "jshint": "^2.5.6"
+    "jshint": "^2.5.6",
+    "mocha": "^2.3.3"
   },
   "repository": {
-    "type": "",
-    "url": ""
+    "type": "git",
+    "url": "https://github.com/strongloop/loopback-example-app-logic"
   },
-  "description": "loopback-example-app-logic",
   "license": "MIT"
 }
