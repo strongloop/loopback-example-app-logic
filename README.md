@@ -8,7 +8,7 @@ $ node .
 # then in a different tab, run ./bin/remote-method-request or ./bin/datetime-request
 ```
 
-In this example, we demonstrate remote methods, remote hooks, model operation hooks, boot scripts, and middleware as solutions for integrating user-defined logic into a LoopBack application.
+In this example, we demonstrate remote methods, remote hooks, model operation hooks, boot scripts, middleware, and email-connector as solutions for integrating user-defined logic into a LoopBack application.
 
 
 ##Prerequisites
@@ -217,6 +217,17 @@ You should see:
 
 > Your date and time will be different.
 
+###Add an email connector
+
+#How do you send email?
+1. Configure an [email datasource](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/datasources.json#L6-L21)
+2. Map the built-in `Email` model to the [the email datasource](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/model-config.json#L33-L35)
+3. Send an email using the [configured model](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/boot/send-email.js#L6-L16)
+
+##Notes
+- This example contains a boot script that sends an email every time you start the application.
+- Be sure to use **YOUR** email configurations in [`datasources.json`](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/datasources.json#L18-L19)
+- You will need to [configure `boot()` in `server.js` to take a callback](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/server.js#L8) for the application to start up properly because we use an [asynchronous boot script](https://github.com/strongloop/loopback-example-email/blob/master/server/boot/send-email.js#L3) for this example
 
 ---
 
