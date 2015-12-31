@@ -1,6 +1,10 @@
 var dsConfig = require('../datasources.json');
 
 module.exports = function(app, done) {
+  if (process.env.CI) {
+    console.log('skipping sending email from CI');
+    return done();
+  }
   var yourEmailAddress = dsConfig.emailDs.transports[0].auth.user;
 
   app.models.Email.send({
