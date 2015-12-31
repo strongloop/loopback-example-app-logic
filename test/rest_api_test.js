@@ -12,18 +12,6 @@ function json(verb, url) {
   }
 
 describe('REST API request', function() {
-
-  before(function(done) {
-    require('./start-server');
-    done();
-  });
-  
-  after(function(done) {
-    app.removeAllListeners('started');
-    app.removeAllListeners('loaded');
-    done();
-  });
-  
   it('should take a sound and repeat it 3 times', function(done){
     json('post', '/api/cars/rev-engine')
       .send({
@@ -37,9 +25,7 @@ describe('REST API request', function() {
         done();
       });
   });
-});
 
-describe('Unexpected Usage', function(){
   it('should not crash the server when posting a bad id', function(done){
     json('post', '/api/cars/foobar')
       .send({})
