@@ -24,7 +24,8 @@ module.exports = function(Car) {
     console.log('> afterInitialize triggered');
   };
 
-  // the rest are all operation hooks - http://docs.strongloop.com/display/public/LB/Operation+hooks
+  // the rest are all operation hooks
+  // - http://docs.strongloop.com/display/public/LB/Operation+hooks
   Car.observe('before save', function(ctx, next) {
     console.log('> before save triggered:', ctx.Model.modelName, ctx.instance ||
       ctx.data);
@@ -35,11 +36,13 @@ module.exports = function(Car) {
     next();
   });
   Car.observe('before delete', function(ctx, next) {
-    console.log('> before delete triggered:', ctx.Model.modelName, ctx.instance);
+    console.log('> before delete triggered:',
+      ctx.Model.modelName, ctx.instance);
     next();
   });
   Car.observe('after delete', function(ctx, next) {
-    console.log('> after delete triggered:', ctx.Model.modelName, (ctx.instance || ctx.where));
+    console.log('> after delete triggered:',
+      ctx.Model.modelName, (ctx.instance || ctx.where));
     next();
   });
 
