@@ -231,10 +231,4 @@ You should see:
 
 ---
 
-- [Next tutorial][next-tutorial]
-- [All tutorials][all-tutorials]
-
-[all-tutorials]: https://github.com/strongloop/loopback-example
-[explorer]: http://localhost:3000/explorer
-[localhost]: http://localhost:3000
-[next-tutorial]: https://github.com/strongloop/loopback-example-access-control
+[More LoopBack examples](https://github.com/strongloop/loopback-example)
