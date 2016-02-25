@@ -200,7 +200,7 @@ The request processing time is 28.472051 ms.
 
 Create the [`datetime` middleware](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/middleware/datetime.js), which responds with the current date and time when a request is made to [`localhost:3000/datetime`](http://localhost:3000/datetime).
 
-Register the `tracker` middleware in [`middleware.json`](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/middleware.json#L19-L21).
+Register the `datetime` middleware in [`middleware.json`](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/middleware.json#L19-L21).
 
 [Create a shell script](https://github.com/strongloop/loopback-example-app-logic/blob/master/bin/datetime-request) to test the middleware.
 
