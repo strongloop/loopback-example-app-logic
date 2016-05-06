@@ -1,3 +1,8 @@
+// Copyright IBM Corp. 2015. All Rights Reserved.
+// Node module: loopback-example-app-logic
+// This file is licensed under the MIT License.
+// License text available at https://opensource.org/licenses/MIT
+
 module.exports = function() {
   return function tracker(req, res, next) {
     console.log('Request tracking middleware triggered on %s.', req.url);
