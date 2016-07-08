@@ -1,4 +1,4 @@
-#loopback-example-app-logic
+# loopback-example-app-logic
 
 ```
 $ git clone https://github.com/strongloop/loopback-example-app-logic.git
@@ -11,24 +11,24 @@ $ node .
 In this example, we demonstrate remote methods, remote hooks, model operation hooks, boot scripts, middleware, and email-connector as solutions for integrating user-defined logic into a LoopBack application.
 
 
-##Prerequisites
+## Prerequisites
 
-###Tutorials
+Tutorials:
 
 - [Getting started with LoopBack](http://docs.strongloop.com/display/LB/Getting+started+with+LoopBack)
 - [Tutorial series - step 1](https://github.com/strongloop/loopback-example#step-one---the-basics)
 - [Tutorial series - step 2](https://github.com/strongloop/loopback-example#step-two---relations-and-filter)
 
-###Knowledge
+Knowledge:
 
 - [LoopBack models](http://docs.strongloop.com/display/LB/Defining+models)
 - [LoopBack adding application logic](http://docs.strongloop.com/display/LB/Adding+application+logic)
 
-##Procedure
+## Procedure
 
-###Create the application
+### Create the application
 
-####Application information
+Application information:
 
 - Name: `loopback-example-app-logic`
 - Directory to contain the project: `loopback-example-app-logic`
@@ -39,9 +39,10 @@ $ slc loopback loopback-example-app-logic
 $ cd loopback-example-app-logic
 ```
 
-###Add a model
+### Add a model
 
-####Model information
+Model information:
+
 - Name: `car`
   - Datasource: `db (memory)`
   - Base class: `PersistedModel`
@@ -60,7 +61,7 @@ $ slc loopback:model car
 ... # follow the prompts
 ```
 
-###Define a remote method
+### Define a remote method
 
 Define a [remote method in `car.js`](https://github.com/strongloop/loopback-example-app-logic/blob/master/common/models/car.js#L2-L13).
 
@@ -77,7 +78,7 @@ You should see:
 {"engineSound":"vroom vroom vroom"}
 ```
 
-###Define a remote method before hook
+### Define a remote method before hook
 
 Define a [remote method before hook in `car.js`](https://github.com/strongloop/loopback-example-app-logic/blob/master/common/models/car.js#L15-L19).
 
@@ -100,7 +101,7 @@ You should see:
 Putting in the car key, starting the engine.
 ```
 
-###Define a remote method after hook
+### Define a remote method after hook
 
 Define a [remote method after hook in `car.js`](https://github.com/strongloop/loopback-example-app-logic/blob/master/common/models/car.js#L21-L25).
 
@@ -119,14 +120,15 @@ You should see:
 Turning off the engine, removing the key.
 ```
 
-###Create a boot script
+### Create a boot script
 
 Create [`print-models.js`](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/boot/print-models.js) in the [`boot` directory](/server/boot).
 
-> The [`app` argument](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/boot/print-models.js#L1) is provided by LoopBack. You can use it to access the application context, which is required when you want to retrieve models, configs, and so on.
+> NOTE: The [`app` argument](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/boot/print-models.js#L1) is provided by LoopBack. You can use it to access the application context, which is required when you want to retrieve models, configs, and so on.
 
-> ####Asynchronous boot scripts
-> To use asynchronous boot scripts, you have to modify [`boot`](https://github.com/strongloop/loopback-example-app-logic/blob/master/examples/async-boot-scripts/server.js#L1) to take  callback. You will also need to provide an additional [`callback` argument](https://github.com/strongloop/loopback-example-app-logic/blob/master/examples/async-boot-script/create-car.js#L1) in your boot scripts.
+#### Asynchronous boot scripts
+
+To use asynchronous boot scripts, you have to modify [`boot`](https://github.com/strongloop/loopback-example-app-logic/blob/master/examples/async-boot-scripts/server.js#L1) to take  callback. You will also need to provide an additional [`callback` argument](https://github.com/strongloop/loopback-example-app-logic/blob/master/examples/async-boot-script/create-car.js#L1) in your boot scripts.
 
 Restart the server.
 
@@ -138,7 +140,7 @@ Models:  [ 'User', 'AccessToken', 'ACL', 'RoleMapping', 'Role', 'car' ]
 ...
 ```
 
-###Define a model operation hook
+### Define a model operation hook
 
 Define [a model operation hook in `car.js`](https://github.com/strongloop/loopback-example-app-logic/blob/master/common/models/car.js#L27-L35).
 
@@ -163,7 +165,7 @@ This model operation hook is triggered **before** saving any `car` model instanc
 
 > Many other operation hooks are available, such as `access`, `before save`, `after save`, `before delete`, and `after delete`. See the [model operation hooks documentation](http://docs.strongloop.com/display/public/LB/Operation+hooks) for more information.
 
-###Add pre-processing middleware
+### Add pre-processing middleware
 
 Create the [`middleware` directory](/server/middleware) to store middleware
 files.
@@ -194,7 +196,7 @@ The request processing time is 28.472051 ms.
 
 > Your time will be different.
 
-###Add post-processing middleware
+### Add post-processing middleware
 
 Create the [`datetime` middleware](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/middleware/datetime.js), which responds with the current date and time when a request is made to [`localhost:3000/datetime`](http://localhost:3000/datetime).
 
@@ -217,14 +219,16 @@ You should see:
 
 > Your date and time will be different.
 
-###Add an email connector
+### Add an email connector
 
-#How do you send email?
+How do you send email?
+
 1. Configure an [email datasource](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/datasources.json#L6-L21)
 2. Map the built-in `Email` model to the [the email datasource](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/model-config.json#L33-L35)
 3. Send an email using the [configured model](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/boot/send-email.js#L6-L16)
 
-##Notes
+Notes:
+
 - This example contains a boot script that sends an email every time you start the application.
 - Be sure to use **YOUR** email configurations in [`datasources.json`](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/datasources.json#L18-L19)
 - You will need to [configure `boot()` in `server.js` to take a callback](https://github.com/strongloop/loopback-example-app-logic/blob/master/server/server.js#L8) for the application to start up properly because we use an [asynchronous boot script](https://github.com/strongloop/loopback-example-email/blob/master/server/boot/send-email.js#L3) for this example
