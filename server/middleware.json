@@ -4,7 +4,14 @@
   },
   "initial": {
     "compression": {},
-    "./middleware/tracker": {}
+    "./middleware/tracker": {},
+    "cors": {
+      "params": {
+        "origin": true,
+        "credentials": true,
+        "maxAge": 86400
+      }
+    }
   },
   "session": {
   },
@@ -26,6 +33,6 @@
     "loopback#urlNotFound": {}
   },
   "final:after": {
-    "errorhandler": {}
+    "strong-error-handler": {}
   }
 }
