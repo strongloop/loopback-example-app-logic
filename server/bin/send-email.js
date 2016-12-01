@@ -3,8 +3,8 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-var dsConfig = require('./datasources.json');
-var app = require('./server.js');
+var dsConfig = require('../datasources.json');
+var app = require('../server.js');
 
 if (process.env.CI) {
   console.log('skipping sending email from CI');
