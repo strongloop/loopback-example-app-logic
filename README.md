@@ -16,8 +16,6 @@ In this example, we demonstrate remote methods, remote hooks, model operation ho
 Tutorials:
 
 - [Getting started with LoopBack](http://loopback.io/doc/en/lb2/Getting-started-with-LoopBack.html)
-- [Tutorial series - step 1](https://github.com/strongloop/loopback-example#step-one---the-basics)
-- [Tutorial series - step 2](https://github.com/strongloop/loopback-example#step-two---relations-and-filter)
 
 Knowledge:
 
