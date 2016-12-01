@@ -212,7 +212,7 @@ You should see:
 
 ```
 ...
-{"started":"2015-01-14T22:54:35.708Z","uptime":3.494}
+{"datetime":"2015-01-14T22:54:35.708Z"}
 ```
 
 > Your date and time will be different.
