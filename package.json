@@ -2,6 +2,9 @@
   "name": "loopback-example-app-logic",
   "version": "1.0.0",
   "description": "loopback-example-app-logic",
+  "engines": {
+    "node": ">=6"
+  },
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint .",
@@ -14,10 +17,10 @@
     "loopback": "^3.0.0",
     "loopback-boot": "^2.6.5",
     "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^1.1.0"
+    "strong-error-handler": "^3.2.0"
   },
   "optionalDependencies": {
-    "loopback-component-explorer": "^2.1.0"
+    "loopback-component-explorer": "^6.3.1"
   },
   "devDependencies": {
     "jshint": "^2.5.6",
