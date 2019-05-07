@@ -31,5 +31,6 @@
     "type": "git",
     "url": "https://github.com/strongloop/loopback-example-app-logic"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "author": "IBM Corp."
 }
